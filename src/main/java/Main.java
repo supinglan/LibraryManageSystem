@@ -18,7 +18,9 @@ public class Main {
                 System.exit(1);
             }
             /* do somethings */
-
+//            StringBuffer sb = new StringBuffer(null);
+//            sb.append("%");
+//            System.out.println(sb.toString());
             // release database connection handler
             if (connector.release()) {
                 log.info("Success to release connection.");

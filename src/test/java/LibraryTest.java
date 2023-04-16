@@ -73,7 +73,8 @@ public class LibraryTest {
     public void bookRegisterTest() {
         Book b0 = new Book("Computer Science", "Database System Concepts",
                 "Machine Industry Press", 2023, "Mike", 188.88, 10);
-        Assert.assertTrue(library.storeBook(b0).ok);
+        //System.out.println(library.storeBook(b0).ok);
+         Assert.assertTrue(library.storeBook(b0).ok);
         /* Not allowed to create duplicated records */
         Book b1 = new Book("Computer Science", "Database System Concepts",
                 "Machine Industry Press", 2023, "Mike", 188.88, 5);
@@ -267,10 +268,12 @@ public class LibraryTest {
         /* remove a book that someone has not returned yet */
         Borrow borrow = new Borrow(my.books.get(0), my.cards.get(0));
         borrow.resetBorrowTime();
+
         Assert.assertTrue(library.borrowBook(borrow).ok);
         Assert.assertFalse(library.removeBook(my.books.get(0).getBookId()).ok);
         borrow.resetReturnTime();
         Assert.assertTrue(library.returnBook(borrow).ok);
+        //System.out.println(library.removeBook(my.books.get(0).getBookId()).message);
         Assert.assertTrue(library.removeBook(my.books.get(0).getBookId()).ok);
         /* remove a non-exist book */
         Assert.assertFalse(library.removeBook(my.books.get(0).getBookId()).ok);
@@ -592,6 +595,7 @@ public class LibraryTest {
         // let book.stock = 1
         Assert.assertTrue(library.incBookStock(book.getBookId(), -book.getStock() + 1).ok);
         /* all threads connect to database */
+
         List<DatabaseConnector> connectors = new ArrayList<>();
         List<LibraryManagementSystem> libraries = new ArrayList<>();
         for (int i = 0; i < nThreads; i++) {

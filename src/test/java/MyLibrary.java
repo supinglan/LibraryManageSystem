@@ -70,6 +70,7 @@ public class MyLibrary {
             r.setBookId(b.getBookId());
             r.setBorrowTime(mills.poll());
             r.setReturnTime(mills.poll());
+            //System.out.println(i+library.borrowBook(r).message);
             Assert.assertTrue(library.borrowBook(r).ok);
             Assert.assertTrue(library.returnBook(r).ok);
             borrowList.add(r);
